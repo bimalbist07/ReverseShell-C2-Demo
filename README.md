@@ -1,4 +1,3 @@
-```markdown
 <p align="center">
   <img src="https://img.shields.io/badge/Project-Reverse_Shell_C2-red?style=for-the-badge&labelColor=black" />
   <img src="https://img.shields.io/badge/Purpose-Educational-blue?style=for-the-badge&labelColor=black" />
@@ -59,34 +58,32 @@ This project demonstrates a fully functional **Reverse Shell Command and Control
 | **Code Editor (Windows)** | Notepad |
 
 ## 📁 Repository Structure
-
-```
 ReverseShell-C2-Demo/
 │
-├── README.md                    # Project documentation
-├── attacker.py                  # C2 listener (Kali Linux)
-├── victim.py                    # Reverse shell payload (Windows)
-├── REVERSE SHELL HANDLER.docx   # Complete project report
+├── README.md # Project documentation
+├── attacker.py # C2 listener (Kali Linux)
+├── victim.py # Reverse shell payload (Windows)
+├── REVERSE SHELL HANDLER.docx # Complete project report
 │
-└── screenshots/                 # All evidence screenshots
-    ├── 01_windows_ip.png
-    ├── 02_kali_ip.png
-    ├── 03_attacker_code.png
-    ├── 04_victim_code.png
-    ├── 05_attacker_waiting.png
-    ├── 06_victim_ready.png
-    ├── 07_connection_kali.png
-    ├── 08_connection_windows.png
-    ├── 09_whoami.png
-    ├── 10_dir.png
-    ├── 11_ipconfig.png
-    ├── 12_calculator.png
-    ├── 13_file_created.png
-    ├── 14_help.png
-    ├── 15_exit.png
-    ├── 16_terminals_closed.png
-    └── 17_firewall_off.png
-```
+└── screenshots/ # All evidence screenshots
+├── 01_windows_ip.png
+├── 02_kali_ip.png
+├── 03_attacker_code.png
+├── 04_victim_code.png
+├── 05_attacker_waiting.png
+├── 06_victim_ready.png
+├── 07_connection_kali.png
+├── 08_connection_windows.png
+├── 09_whoami.png
+├── 10_dir.png
+├── 11_ipconfig.png
+├── 12_calculator.png
+├── 13_file_created.png
+├── 14_help.png
+├── 15_exit.png
+├── 16_terminals_closed.png
+└── 17_firewall_off.png
+
 
 ## 📸 Commands Executed & Results
 
@@ -121,88 +118,39 @@ Reverse Shell (ALLOWED BY FIREWALL):
 ┌─────────┐           ┌──────────┐     ┌─────────┐
 │ Attacker│ ◄──────── │ Firewall │ ◄── │ Victim  │
 └─────────┘     ✓     └──────────┘     └─────────┘
-```
 
-## ✅ Key Findings & Recommendations
 
-| Finding | Impact | Severity | Recommendation |
-|---------|--------|----------|----------------|
-| Successful firewall bypass via reverse shell | Remote code execution | **Critical** | Implement **egress filtering** on firewalls to block unusual outbound ports (e.g., 4444, 1337, 31337) |
-| Python-based payload executed without detection | Significant detection gap | **High** | Enable **application whitelisting** (Windows Defender Application Control / AppLocker) |
-| Arbitrary commands and processes launched remotely | Full system compromise | **Critical** | Deploy **EDR** solutions to monitor parent-child process anomalies (e.g., `python.exe` spawning `cmd.exe`) |
-| Data exfiltration and file creation possible | Data breach risk | **High** | Enforce **outbound TLS inspection** and network monitoring for beaconing patterns |
-| No authentication required for C2 access | Unauthorized access | **Critical** | Implement **mutual authentication** for all C2 communications |
+✅ Key Findings & Recommendations
+Finding	Impact	Severity	Recommendation
+Successful firewall bypass via reverse shell	Remote code execution	Critical	Implement egress filtering on firewalls to block unusual outbound ports (e.g., 4444, 1337, 31337)
+Python-based payload executed without detection	Significant detection gap	High	Enable application whitelisting (Windows Defender Application Control / AppLocker)
+Arbitrary commands and processes launched remotely	Full system compromise	Critical	Deploy EDR solutions to monitor parent-child process anomalies (e.g., python.exe spawning cmd.exe)
+Data exfiltration and file creation possible	Data breach risk	High	Enforce outbound TLS inspection and network monitoring for beaconing patterns
+No authentication required for C2 access	Unauthorized access	Critical	Implement mutual authentication for all C2 communications
+🛡️ Defense in Depth Strategy
+Layer	Control	Implementation
+Network	Egress Filtering	Block all outbound ports except 80, 443, 53
+Network	IDS/IPS Signatures	Deploy Snort/Suricata rules for reverse shell patterns
+Endpoint	Application Control	Only allow signed/approved executables
+Endpoint	EDR Monitoring	Alert on python.exe → cmd.exe parent-child relationships
+Configuration	PowerShell Logging	Enable ScriptBlock and Module logging
+User Awareness	Security Training	Educate users about running unknown scripts
+📚 References & Further Reading
+Python Socket Programming Documentation
 
-## 🛡️ Defense in Depth Strategy
+Reverse Shell - OWASP
 
-| Layer | Control | Implementation |
-|-------|---------|----------------|
-| **Network** | Egress Filtering | Block all outbound ports except 80, 443, 53 |
-| **Network** | IDS/IPS Signatures | Deploy Snort/Suricata rules for reverse shell patterns |
-| **Endpoint** | Application Control | Only allow signed/approved executables |
-| **Endpoint** | EDR Monitoring | Alert on `python.exe` → `cmd.exe` parent-child relationships |
-| **Configuration** | PowerShell Logging | Enable ScriptBlock and Module logging |
-| **User Awareness** | Security Training | Educate users about running unknown scripts |
+MITRE ATT&CK - Command and Control (TA0011)
 
-## 📚 References & Further Reading
+Cobalt Strike C2 Explained
 
-- [Python Socket Programming Documentation](https://docs.python.org/3/library/socket.html)
-- [Reverse Shell - OWASP](https://owasp.org/www-community/attacks/Reverse_Shell)
-- [MITRE ATT&CK - Command and Control (TA0011)](https://attack.mitre.org/tactics/TA0011/)
-- [Cobalt Strike C2 Explained](https://www.cobaltstrike.com/help-c2)
-- [Understanding Reverse Shells - IBM](https://www.ibm.com/topics/reverse-shell)
+Understanding Reverse Shells - IBM
 
-## ⚠️ Disclaimer
+⚠️ Disclaimer
+This project was completed for educational purposes as part of the CEH v13 training curriculum.
 
-> **This project was completed for educational purposes as part of the CEH v13 training curriculum.**
->
-> All demonstrations were performed in a controlled, isolated lab environment on systems owned by the author. The techniques shown are for understanding cybersecurity threats and implementing proper defenses. Unauthorized use of these techniques on systems without explicit written permission is illegal and unethical. The author takes no responsibility for misuse of this code.
+All demonstrations were performed in a controlled, isolated lab environment on systems owned by the author. The techniques shown are for understanding cybersecurity threats and implementing proper defenses. Unauthorized use of these techniques on systems without explicit written permission is illegal and unethical. The author takes no responsibility for misuse of this code.
 
-## 🔗 Connect with Me
-
-<p align="left">
-  <a href="https://github.com/bimalbist07">
-    <img src="https://img.shields.io/badge/GitHub-bimalbist07-181717?logo=github&style=for-the-badge&labelColor=black" />
-  </a>
-  <a href="https://www.linkedin.com/in/bimal-bist-98a324315/">
-    <img src="https://img.shields.io/badge/LinkedIn-Bimal_Bist-0077B5?logo=linkedin&style=for-the-badge&labelColor=white" />
-  </a>
-</p>
-
----
-
-*This project was completed for the CEH v13 certification training. All techniques demonstrated are part of authorized security testing in a controlled environment.*
-
----
-
-## About
-
-**Reverse Shell Command and Control Handler** - Python-based C2 demo for educational purposes, demonstrating firewall bypass techniques and remote command execution.
-```
-
----
-
-# 📝 HOW TO USE:
-
-## Step 1: Copy the ENTIRE code block above (from \`\`\`markdown to \`\`\`)
-
-## Step 2: Go to your GitHub repository:
-```
-https://github.com/bimalbist07/ReverseShell-C2-Demo
-```
-
-## Step 3: Click on `README.md` file
-
-## Step 4: Click the pencil icon (✏️) to edit
-
-## Step 5: Select ALL existing text (Ctrl+A) and DELETE it
-
-## Step 6: PASTE the copied code (Ctrl+V)
-
-## Step 7: Scroll down and click **"Commit changes"** (green button)
-
----
-
-# ✅ DONE! Your repository is now professional!
-
-**Your link:** `https://github.com/bimalbist07/ReverseShell-C2-Demo`
+🔗 Connect with Me
+<p align="left"> <a href="https://github.com/bimalbist07"> <img src="https://img.shields.io/badge/GitHub-bimalbist07-181717?logo=github&style=for-the-badge&labelColor=black" /> </a> <a href="https://www.linkedin.com/in/bimal-bist-98a324315/"> <img src="https://img.shields.io/badge/LinkedIn-Bimal_Bist-0077B5?logo=linkedin&style=for-the-badge&labelColor=white" /> </a> </p>
+This project was completed for the CEH v13 certification training. All techniques demonstrated are part of authorized security testing in a controlled environment.
