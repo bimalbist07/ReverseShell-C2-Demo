@@ -80,12 +80,8 @@ The victim initiates the connection outward, so the firewall allows it.
 
 ## 🔗 Connect with Me
 
-<a href="https://github.com/bimalbist07">
-  <img src="https://img.shields.io/badge/GitHub-bimalbist07-181717?logo=github&style=for-the-badge&labelColor=black" />
-</a>
-<a href="https://www.linkedin.com/in/bimal-bist-98a324315/">
-  <img src="https://img.shields.io/badge/LinkedIn-Bimal_Bist-0077B5?logo=linkedin&style=for-the-badge&labelColor=white" />
-</a>
+[![GitHub](https://img.shields.io/badge/GitHub-bimalbist07-black?logo=github&style=for-the-badge)](https://github.com/bimalbist07)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Bimal_Bist-blue?logo=linkedin&style=for-the-badge)](https://www.linkedin.com/in/bimal-bist-98a324315/)
 
 ---
 
