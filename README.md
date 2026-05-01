@@ -10,7 +10,7 @@
 
 ## 📋 Executive Summary
 
-This project demonstrates a fully functional **Reverse Shell Command and Control (C2) system** using Python sockets. The attacker (Kali Linux) sets up a listener, and the victim (Windows) initiates an outbound connection, successfully bypassing traditional firewall rules. This simulation showcases the exact technique used by real-world malware like Cobalt Strike and Metasploit, providing a clear understanding of both the offensive mechanism and defensive countermeasures. The assessment was conducted in an isolated lab environment with all proper authorizations.
+This project demonstrates a fully functional **Reverse Shell Command and Control (C2) system** using Python sockets. The attacker (Kali Linux) sets up a listener, and the victim (Windows) initiates an outbound connection, successfully bypassing traditional firewall rules. This simulation showcases the exact technique used by real-world malware like Cobalt Strike and Metasploit, providing a clear understanding of both the offensive mechanism and defensive countermeasures.
 
 ## 🖥️ Lab Environment
 
@@ -54,25 +54,23 @@ This project demonstrates a fully functional **Reverse Shell Command and Control
 | **Reverse Shell (Victim)** | `victim.py` (Windows 10/11) |
 | **Network Utilities** | `ipconfig` (Windows), `ifconfig`/`ip a` (Kali) |
 | **Exploitation Commands** | `whoami`, `dir`, `ipconfig`, `calc`, `echo`, `exit` |
-| **Code Editor (Kali)** | Nano |
-| **Code Editor (Windows)** | Notepad |
 
 ## 📁 Repository Structure
 ReverseShell-C2-Demo/
 │
-├── README.md # Project documentation
-├── attacker.py # C2 listener (Kali Linux)
-├── victim.py # Reverse shell payload (Windows)
-├── REVERSE SHELL HANDLER.docx # Complete project report
+├── README.md
+├── attacker.py
+├── victim.py
+├── REVERSE SHELL HANDLER.docx
 │
-└── screenshots/ # All evidence screenshots
+└── screenshots/
 ├── 01_windows_ip.png
 ├── 02_kali_ip.png
 ├── 03_attacker_code.png
 ├── 04_victim_code.png
 ├── 05_attacker_waiting.png
-├── 06_victim_ready.png
-├── 07_connection_kali.png
+├── 06_connection_kali.png
+├── 07_victim_waiting.png
 ├── 08_connection_windows.png
 ├── 09_whoami.png
 ├── 10_dir.png
@@ -81,9 +79,10 @@ ReverseShell-C2-Demo/
 ├── 13_file_created.png
 ├── 14_help.png
 ├── 15_exit.png
-├── 16_terminals_closed.png
+├── 16_terminal_closed.png
 └── 17_firewall_off.png
 
+text
 
 ## 📸 Commands Executed & Results
 
@@ -107,50 +106,34 @@ Standard firewalls are configured to:
 A reverse shell exploits this by having the **victim initiate the connection outward**. The firewall perceives this as legitimate outbound traffic (like web browsing), allowing the malicious tunnel to be established.
 
 **Conceptual Diagram:**
-
-```text
 Normal Connection (BLOCKED BY FIREWALL):
-┌─────────┐     ✗     ┌──────────┐     ┌─────────┐
-│ Attacker│ ────────► │ Firewall │ ──► │ Victim  │
-└─────────┘           └──────────┘     └─────────┘
+[Attacker] -----X----> [Firewall] -----> [Victim]
 
 Reverse Shell (ALLOWED BY FIREWALL):
-┌─────────┐           ┌──────────┐     ┌─────────┐
-│ Attacker│ ◄──────── │ Firewall │ ◄── │ Victim  │
-└─────────┘     ✓     └──────────┘     └─────────┘
+[Attacker] <-----✓---- [Firewall] <----- [Victim]
 
+text
 
-✅ Key Findings & Recommendations
-Finding	Impact	Severity	Recommendation
-Successful firewall bypass via reverse shell	Remote code execution	Critical	Implement egress filtering on firewalls to block unusual outbound ports (e.g., 4444, 1337, 31337)
-Python-based payload executed without detection	Significant detection gap	High	Enable application whitelisting (Windows Defender Application Control / AppLocker)
-Arbitrary commands and processes launched remotely	Full system compromise	Critical	Deploy EDR solutions to monitor parent-child process anomalies (e.g., python.exe spawning cmd.exe)
-Data exfiltration and file creation possible	Data breach risk	High	Enforce outbound TLS inspection and network monitoring for beaconing patterns
-No authentication required for C2 access	Unauthorized access	Critical	Implement mutual authentication for all C2 communications
-🛡️ Defense in Depth Strategy
-Layer	Control	Implementation
-Network	Egress Filtering	Block all outbound ports except 80, 443, 53
-Network	IDS/IPS Signatures	Deploy Snort/Suricata rules for reverse shell patterns
-Endpoint	Application Control	Only allow signed/approved executables
-Endpoint	EDR Monitoring	Alert on python.exe → cmd.exe parent-child relationships
-Configuration	PowerShell Logging	Enable ScriptBlock and Module logging
-User Awareness	Security Training	Educate users about running unknown scripts
-📚 References & Further Reading
-Python Socket Programming Documentation
+## ✅ Key Findings & Recommendations
 
-Reverse Shell - OWASP
+| Finding | Impact | Severity | Recommendation |
+|---------|--------|----------|----------------|
+| Successful firewall bypass via reverse shell | Remote code execution | **Critical** | Implement egress filtering to block unusual outbound ports |
+| Python-based payload executed without detection | Detection gap | **High** | Enable application whitelisting |
+| Arbitrary commands launched remotely | Full system compromise | **Critical** | Deploy EDR to monitor parent-child anomalies |
+| Data exfiltration possible | Data breach risk | **High** | Enforce outbound TLS inspection |
 
-MITRE ATT&CK - Command and Control (TA0011)
+## 📚 References
 
-Cobalt Strike C2 Explained
+- [Python Socket Programming Documentation](https://docs.python.org/3/library/socket.html)
+- [Reverse Shell - OWASP](https://owasp.org/www-community/attacks/Reverse_Shell)
+- [MITRE ATT&CK - Command and Control (TA0011)](https://attack.mitre.org/tactics/TA0011/)
 
-Understanding Reverse Shells - IBM
+## ⚠️ Disclaimer
 
-⚠️ Disclaimer
-This project was completed for educational purposes as part of the CEH v13 training curriculum.
-
-All demonstrations were performed in a controlled, isolated lab environment on systems owned by the author. The techniques shown are for understanding cybersecurity threats and implementing proper defenses. Unauthorized use of these techniques on systems without explicit written permission is illegal and unethical. The author takes no responsibility for misuse of this code.
-
+> **This project was completed for educational purposes as part of the CEH v13 training curriculum.**
+>
+> All demonstrations were performed in a controlled, isolated lab environment. Unauthorized use of these techniques on systems without explicit written permission is illegal and unethical.
 
 ## 🔗 Connect with Me
 
@@ -160,3 +143,7 @@ All demonstrations were performed in a controlled, isolated lab environment on s
 <a href="https://www.linkedin.com/in/bimal-bist-98a324315/">
   <img src="https://img.shields.io/badge/LinkedIn-Bimal_Bist-0077B5?logo=linkedin&style=for-the-badge&labelColor=white" />
 </a>
+
+---
+
+*This project was completed for the CEH v13 certification training.*
