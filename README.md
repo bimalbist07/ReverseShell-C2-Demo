@@ -151,6 +151,12 @@ This project was completed for educational purposes as part of the CEH v13 train
 
 All demonstrations were performed in a controlled, isolated lab environment on systems owned by the author. The techniques shown are for understanding cybersecurity threats and implementing proper defenses. Unauthorized use of these techniques on systems without explicit written permission is illegal and unethical. The author takes no responsibility for misuse of this code.
 
-🔗 Connect with Me
-<p align="left"> <a href="https://github.com/bimalbist07"> <img src="https://img.shields.io/badge/GitHub-bimalbist07-181717?logo=github&style=for-the-badge&labelColor=black" /> </a> <a href="https://www.linkedin.com/in/bimal-bist-98a324315/"> <img src="https://img.shields.io/badge/LinkedIn-Bimal_Bist-0077B5?logo=linkedin&style=for-the-badge&labelColor=white" /> </a> </p>
-This project was completed for the CEH v13 certification training. All techniques demonstrated are part of authorized security testing in a controlled environment.
+
+## 🔗 Connect with Me
+
+<a href="https://github.com/bimalbist07">
+  <img src="https://img.shields.io/badge/GitHub-bimalbist07-181717?logo=github&style=for-the-badge&labelColor=black" />
+</a>
+<a href="https://www.linkedin.com/in/bimal-bist-98a324315/">
+  <img src="https://img.shields.io/badge/LinkedIn-Bimal_Bist-0077B5?logo=linkedin&style=for-the-badge&labelColor=white" />
+</a>
